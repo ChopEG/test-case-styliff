@@ -20,10 +20,19 @@ const users = createReducer(initUsers, (builder) => {
       ];
     })
     .addCase(userSuccess, (state, {payload}) => {
-      return [
-        ...state,
-        payload,
-      ];
+      const index = state.findIndex((user) => user.id === payload.id);
+
+      if (index === -1) {
+        return [
+          ...state,
+          payload,
+        ];
+      }
+
+      const newState = [...state];
+      newState[index] = payload;
+
+      return [...newState];
     });
 });
 

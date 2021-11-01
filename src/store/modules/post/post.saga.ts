@@ -1,7 +1,7 @@
 import {postService} from './post.service';
 import {postActions} from './post.actions';
 import {AxiosResponse} from 'axios';
-import {GetPosts} from './post.types';
+import {GetPosts, Post} from './post.types';
 import {call, put, all, takeEvery} from 'redux-saga/effects';
 
 function* getPostsByUser({payload}: any) {
@@ -10,6 +10,10 @@ function* getPostsByUser({payload}: any) {
       postService.getPostsByUser,
       payload,
     );
+
+    yield put(postActions.postsSuccess(data));
+
+    data.data = yield all(data.data.map((post) => call(getMessages, post)));
 
     yield put(postActions.postsSuccess(data));
   } catch (e) {
@@ -25,9 +29,30 @@ function* getPostsByTag({payload}: any) {
     );
 
     yield put(postActions.postsSuccess(data));
+
+    data.data = yield all(data.data.map((post) => call(getMessages, post)));
+
+    yield put(postActions.postsSuccess(data));
   } catch (e) {
 
   }
+}
+
+function* getMessages(post: Post) {
+  const {data} = yield call(
+    postService.getComments,
+    {
+      id: post.id,
+      page: 0,
+      limit: 2,
+    },
+  );
+
+  return {
+    ...post,
+    countComment: data.total,
+    comments: data.data,
+  };
 }
 
 export const postSaga = all([

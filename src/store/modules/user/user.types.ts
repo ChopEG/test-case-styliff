@@ -2,7 +2,7 @@ import {MetaRequest} from '../../../services/api.service';
 import {Post} from '../post/post.types';
 
 export interface UserPageState {
-  users: User[];
+  users: User[] | UserFull[];
   meta: UserPageMeta;
 }
 
@@ -12,6 +12,7 @@ export interface User {
   firstName: string;
   lastName: string;
   picture: string;
+  countPosts?: number;
 }
 
 export interface UserFull extends User {

@@ -19,10 +19,13 @@ class PostService {
     });
   }
 
-  async getCountComments(id: string) {
-    const {data} = await apiService.get(`post/${id}/comment`);
-
-    return data.total;
+  async getComments(data: {id: string, page?: number, limit?: number}) {
+    return await apiService.get(`post/${data.id}/comment`, {
+      params: {
+        page: data.page || 0,
+        limit: data.limit || 10,
+      },
+    });
   }
 }
 

@@ -24,9 +24,15 @@ export const UserCard = ({user, showActions = true}: UserCardProps) => {
         alt='user thumbnail'
       />
       <CardContent>
-        <Typography color='text.secondary'>
+        <Typography color='text.secondary' mb='12px'>
           {user.firstName} {user.lastName}
         </Typography>
+        {user.countPosts || user.countPosts === 0 ?
+          <Typography color='text.secondary'>
+            Posts: {user.countPosts}
+          </Typography> :
+          null
+        }
       </CardContent>
       {showActions &&
         <CardActions>

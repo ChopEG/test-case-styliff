@@ -17,12 +17,13 @@ export const PostList = ({typePage}: PostListProps) => {
     if (typePage === 'tag') {
       dispatch(postActions.getCountComment(posts));
     }
-  }, []);
+    // eslint-disable-next-line
+  }, [posts]);
 
   return (
     <Grid container spacing={2} justifyContent='center' alignItems='stretch'>
       {posts.map((post) => (
-        <Grid key={post.id} item xs={12} sm={6} md={3}>
+        <Grid key={post.id} item xs={12} sm={6} md={4}>
           <PostCard post={post} typePage={typePage}/>
         </Grid>
       ))}

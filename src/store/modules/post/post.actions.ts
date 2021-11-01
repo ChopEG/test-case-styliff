@@ -7,7 +7,7 @@ export const postActionTypes = {
   POSTS_SUCCESS: '[posts] success',
 
   POST_REQUEST_COUNT_COMMENT: '[post] count comment request',
-  POST_COUNT_COMMENT_SUCCESS: '[post] count comment sucess',
+  POST_COUNT_COMMENT_SUCCESS: '[post] count comment success',
 };
 
 export const postActions = {

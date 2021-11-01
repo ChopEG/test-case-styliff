@@ -9,11 +9,9 @@ export const getUsers = createSelector(
 );
 
 export const getUserById = createSelector(
-  (state: AppState) => state,
+  (state: any) => state,
   (_: AppState, id: string) => id,
-  (state, id) => {
-    return state.user.users.find((user) => user.id === id);
-  },
+  (state: AppState, id) => state.user.users.find((user) => user.id === id),
 );
 
 export const getUserPageMeta = createSelector(

@@ -1,4 +1,3 @@
-import {Container} from '@mui/material';
 import {Box} from '@mui/system';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -23,7 +22,8 @@ export const UserListPage = () => {
       page: Number(queryParams.get('page')) || pageMeta.page,
       limit: Number(queryParams.get('limit')) || pageMeta.limit,
     }));
-  }, []);
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   const handleChangePage = (e: any, value: number) => {
     history.push(`?page=${value - 1}&limit=${pageMeta.limit}`);
@@ -36,7 +36,7 @@ export const UserListPage = () => {
   }
 
   return (
-    <Container sx={{alignItems: 'center'}}>
+    <>
       <UserList />
       <Box display='flex' justifyContent='center' mt='20px'>
         <PagePagination
@@ -46,6 +46,6 @@ export const UserListPage = () => {
           onChange={handleChangePage}
         />
       </Box>
-    </Container>
+    </>
   );
 };

@@ -23,9 +23,17 @@ export interface Post {
   tags: string[];
   publishDate: string;
   owner: User;
-  countComment?: number
+  countComment?: number;
+  comments: Comment[]
 }
 
+export interface Comment {
+  id: string;
+  message: string;
+  owner: User,
+  post: string,
+  publishDate: string,
+}
 
 export interface GetPostPayload {
   id: string,

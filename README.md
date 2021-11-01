@@ -25,3 +25,23 @@ To incrementally build the project:
 ```sh
 npm run build
 ```
+
+## Docker
+
+Build image 
+
+```sh
+docker image build --network host -f Dockerfile -t styliff 
+```
+
+Run the project with docker 
+
+```sh
+docker run -t --name styliff --network host -p 3000:3000 styliff
+```
+
+Stop container
+
+```sh
+docker stop styliff
+```

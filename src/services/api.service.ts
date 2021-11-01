@@ -8,9 +8,9 @@ export interface MetaRequest {
 
 function createClient(clientConfig?: AxiosRequestConfig):AxiosInstance {
   return axios.create({
-    baseURL: process.env.API_URL || '',
+    baseURL: process.env.REACT_APP_API_URL || '',
     headers: {
-      'app-id': process.env.API_KEY || '',
+      'app-id': process.env.REACT_APP_API_KEY || '',
     },
   });
 }

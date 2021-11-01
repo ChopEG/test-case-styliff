@@ -17,6 +17,7 @@ export const PagePagination = (
       count={totalPages}
       page={page + 1}
       onChange={onChange}
+      sx={{display: 'flex', justifyContent: 'center'}}
     />
   );
 };
